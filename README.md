@@ -1,70 +1,369 @@
-# Getting Started with Create React App
+# Redux ToDo App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern ToDo application built with React and Redux Toolkit that demonstrates state management using Redux. Users can add tasks, edit tasks, mark tasks as completed, and filter tasks based on their status.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Project Overview
 
-### `npm start`
+This project was created as part of a Redux checkpoint to practice:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Redux Toolkit
+- React Redux
+- Global State Management
+- Action Dispatching
+- Reducers
+- React Functional Components
+- Hooks (useState, useDispatch, useSelector)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The application stores and manages all tasks through a centralized Redux store.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+### Task Management
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+✔ Add new tasks
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+✔ Edit existing tasks
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+✔ Mark tasks as completed
 
-### `npm run eject`
+✔ Mark tasks as not completed
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+✔ Real-time UI updates through Redux state
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Task Filtering
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Users can filter tasks by:
 
-## Learn More
+- All Tasks
+- Completed Tasks
+- Non-Completed Tasks
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Redux Toolkit Implementation
 
-### Code Splitting
+The application uses:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- createSlice()
+- configureStore()
+- useDispatch()
+- useSelector()
 
-### Analyzing the Bundle Size
+for clean and scalable state management.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Frontend
 
-### Advanced Configuration
+- React
+- React DOM
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### State Management
 
-### Deployment
+- Redux Toolkit
+- React Redux
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Styling
 
-### `npm run build` fails to minify
+- CSS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Development Environment
+
+- Create React App
+
+---
+
+# Project Structure
+
+```text
+Redux-Checkpoint-main
+│
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+│
+├── src
+│   │
+│   ├── components
+│   │   ├── AddTask.js
+│   │   ├── ListTask.js
+│   │   └── Task.js
+│   │
+│   ├── redux
+│   │   ├── store.js
+│   │   └── taskSlice.js
+│   │
+│   ├── App.js
+│   ├── App.css
+│   ├── index.js
+│   ├── index.css
+│   ├── logo.svg
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+│
+├── package.json
+├── package-lock.json
+├── .gitignore
+└── README.md
+```
+
+---
+
+# Application Architecture
+
+## Redux Store
+
+The Redux store is configured in:
+
+```javascript
+src/redux/store.js
+```
+
+Responsibilities:
+
+- Creates the global store
+- Registers reducers
+- Provides application-wide state
+
+---
+
+## Task Slice
+
+Located in:
+
+```javascript
+src/redux/taskSlice.js
+```
+
+Handles:
+
+### Initial State
+
+```javascript
+{
+  taskList: [],
+  filter: "all"
+}
+```
+
+### Reducers
+
+#### addTask()
+
+Adds a new task to the store.
+
+#### toggleDone()
+
+Changes task status between:
+
+- Completed
+- Not Completed
+
+#### editTask()
+
+Updates task description.
+
+#### setFilter()
+
+Changes the active filter.
+
+---
+
+# Components
+
+## AddTask Component
+
+File:
+
+```javascript
+src/components/AddTask.js
+```
+
+Responsibilities:
+
+- Captures user input
+- Creates new task objects
+- Dispatches addTask action
+
+---
+
+## ListTask Component
+
+File:
+
+```javascript
+src/components/ListTask.js
+```
+
+Responsibilities:
+
+- Retrieves tasks from Redux store
+- Retrieves current filter
+- Filters tasks dynamically
+- Renders Task components
+
+---
+
+## Task Component
+
+File:
+
+```javascript
+src/components/Task.js
+```
+
+Responsibilities:
+
+- Displays task details
+- Toggles completion state
+- Enables editing mode
+- Saves updated task descriptions
+
+---
+
+# Redux Data Flow
+
+```text
+User Action
+     │
+     ▼
+Component Dispatches Action
+     │
+     ▼
+Redux Reducer
+     │
+     ▼
+Store State Updated
+     │
+     ▼
+UI Automatically Re-renders
+```
+
+---
+
+# Installation
+
+## Clone Repository
+
+```bash
+git clone <repository-url>
+```
+
+## Navigate to Project
+
+```bash
+cd Redux-Checkpoint-main
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+# Running the Application
+
+Start the development server:
+
+```bash
+npm start
+```
+
+The application will run on:
+
+```text
+http://localhost:3000
+```
+
+---
+
+# Available Scripts
+
+### Start Development Server
+
+```bash
+npm start
+```
+
+### Run Tests
+
+```bash
+npm test
+```
+
+### Create Production Build
+
+```bash
+npm run build
+```
+
+### Eject CRA Configuration
+
+```bash
+npm run eject
+```
+
+---
+
+# Example Workflow
+
+### Add a Task
+
+1. Enter task description.
+2. Click "Add Task".
+3. Task appears in the list.
+
+### Complete a Task
+
+1. Click checkbox.
+2. Task becomes completed.
+
+### Edit a Task
+
+1. Click "Edit".
+2. Update text.
+3. Click "Save".
+
+### Filter Tasks
+
+Choose:
+
+- All
+- Done
+- Not Done
+
+to view specific tasks.
+
+---
+
+# Learning Objectives Achieved
+
+- Redux Store Creation
+- Redux Toolkit Usage
+- Slice Management
+- Action Dispatching
+- State Selection with useSelector
+- State Updates with Reducers
+- React Component Communication
+- Global State Management
+- Filtering Data with Redux
+
+---
+
+# Author
+
+Developed as part of a Redux Toolkit checkpoint project to demonstrate modern React state management techniques and best practices.
